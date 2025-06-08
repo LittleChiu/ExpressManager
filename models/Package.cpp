@@ -14,7 +14,8 @@ bool Package::createTable() {
                       "location TEXT,"
                       "storedTime INTEGER,"
                       "expressCompanyId INTEGER,"
-                      "recipientId INTEGER)");
+                      "recipientId INTEGER,"
+                      "expressmanId INTEGER)");
 }
 
 Package Package::fromQuery(const QSqlQuery& query) {
@@ -28,6 +29,7 @@ Package Package::fromQuery(const QSqlQuery& query) {
     pkg.storedTime = query.value("storedTime").toLongLong();
     pkg.expressCompanyId = query.value("expressCompanyId").toInt();
     pkg.recipientId = query.value("recipientId").toInt();
+    pkg.expressmanId = query.value("expressmanId").toInt();
     return pkg;
 }
 
@@ -42,8 +44,8 @@ QList<Package> Package::getAll() {
 
 bool Package::addPackage(const Package& pkg) {
     QSqlQuery query;
-    query.prepare("INSERT INTO Package (volume, weight, isFragile, status, location, storedTime, expressCompanyId, recipientId) "
-                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    query.prepare("INSERT INTO Package (volume, weight, isFragile, status, location, storedTime, expressCompanyId, recipientId, expressmanId) "
+                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     query.addBindValue(pkg.volume);
     query.addBindValue(pkg.weight);
     query.addBindValue(pkg.isFragile ? 1 : 0);
@@ -52,6 +54,7 @@ bool Package::addPackage(const Package& pkg) {
     query.addBindValue(pkg.storedTime);
     query.addBindValue(pkg.expressCompanyId);
     query.addBindValue(pkg.recipientId);
+    query.addBindValue(pkg.expressmanId);
     return query.exec();
 }
 

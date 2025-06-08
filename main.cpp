@@ -2,6 +2,7 @@
 #include "db/DatabaseManager.h"
 #include "views/LoginView.h"
 #include "views/AdminView.h"
+#include "views/ExpressmanView.h"
 #include <QWidget>
 
 int main(int argc, char *argv[]) {
@@ -17,6 +18,7 @@ int main(int argc, char *argv[]) {
             next = new AdminView(user.id);
             break;
         case UserRole::EXPRESSMAN:
+            next = new ExpressmanView(user.id);
             // TODO: 快递员界面
             break;
         case UserRole::RECIPIENT:

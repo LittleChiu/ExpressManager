@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>LoginView</class>
  <widget class="QWidget" name="LoginView">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>173</width>
-    <height>233</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>登录/注册</string>
   </property>

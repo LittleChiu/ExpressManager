@@ -29,7 +29,7 @@ PackageView::~PackageView() {
 }
 
 void PackageView::refreshPackageTable() {
-    QStringList headers = {"ID", "体积", "重量", "易碎", "状态", "位置", "公司ID", "收件人ID"};
+    QStringList headers = {"ID", "体积", "重量", "易碎", "状态", "位置", "公司ID", "收件人ID", "快递员ID"};
     ui->packageTableWidget->setColumnCount(headers.size());
     ui->packageTableWidget->setHorizontalHeaderLabels(headers);
     ui->packageTableWidget->setRowCount(0);
@@ -46,6 +46,7 @@ void PackageView::refreshPackageTable() {
         ui->packageTableWidget->setItem(i, 5, new QTableWidgetItem(p.location));
         ui->packageTableWidget->setItem(i, 6, new QTableWidgetItem(QString::number(p.expressCompanyId)));
         ui->packageTableWidget->setItem(i, 7, new QTableWidgetItem(QString::number(p.recipientId)));
+        ui->packageTableWidget->setItem(i, 8, new QTableWidgetItem(QString::number(p.expressmanId)));
     }
     ui->packageTableWidget->resizeColumnsToContents();
     selectedPackageId = -1;
@@ -125,6 +126,7 @@ void PackageView::onAddPackageClicked() {
         pkg.storedTime = QDateTime::currentSecsSinceEpoch();
         pkg.expressCompanyId = companyCombo.currentData().toInt();
         pkg.recipientId = recipientCombo.currentData().toInt();
+        pkg.expressmanId = currentUserId;
         if (PackageController::instance().addPackage(pkg)) {
             QMessageBox::information(this, "成功", "添加包裹成功");
         } else {

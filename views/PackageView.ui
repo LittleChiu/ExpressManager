@@ -9,7 +9,7 @@
    <item>
     <widget class="QTableWidget" name="packageTableWidget">
      <property name="columnCount">
-      <number>8</number>
+      <number>9</number>
      </property>
      <property name="horizontalHeaderLabels">
       <stringlist>
@@ -21,6 +21,7 @@
        <string>位置</string>
        <string>公司ID</string>
        <string>收件人ID</string>
+       <string>快递员ID</string>
       </stringlist>
      </property>
     </widget>

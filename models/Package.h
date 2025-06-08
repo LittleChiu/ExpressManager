@@ -15,6 +15,7 @@ public:
     qint64 storedTime;
     int expressCompanyId;
     int recipientId;
+    int expressmanId;
 
     static bool createTable();
     static Package fromQuery(const QSqlQuery& query);
