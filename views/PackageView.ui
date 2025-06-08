@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PackageView</class>
+ <widget class="QWidget" name="PackageView">
+  <property name="windowTitle">
+   <string>包裹管理</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTableWidget" name="packageTableWidget">
+     <property name="columnCount">
+      <number>8</number>
+     </property>
+     <property name="horizontalHeaderLabels">
+      <stringlist>
+       <string>ID</string>
+       <string>体积</string>
+       <string>重量</string>
+       <string>易碎</string>
+       <string>状态</string>
+       <string>位置</string>
+       <string>公司ID</string>
+       <string>收件人ID</string>
+      </stringlist>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayoutButtons">
+     <item>
+      <widget class="QPushButton" name="addPackageButton">
+       <property name="text">
+        <string>添加包裹</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="updateStatusButton">
+       <property name="text">
+        <string>修改状态</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui> 

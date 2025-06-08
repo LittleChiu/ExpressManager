@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PickupCabinetView</class>
+ <widget class="QWidget" name="PickupCabinetView">
+  <property name="windowTitle">
+   <string>快递柜管理</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTableWidget" name="cabinetTableWidget">
+     <property name="columnCount">
+      <number>4</number>
+     </property>
+     <property name="horizontalHeaderLabels">
+      <stringlist>
+       <string>ID</string>
+       <string>位置</string>
+       <string>容量</string>
+       <string>包裹ID列表</string>
+      </stringlist>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayoutButtons">
+     <item>
+      <widget class="QPushButton" name="addCabinetButton">
+       <property name="text">
+        <string>添加柜子</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="removeCabinetButton">
+       <property name="text">
+        <string>删除柜子</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="updateCabinetButton">
+       <property name="text">
+        <string>修改信息</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="viewPackagesButton">
+       <property name="text">
+        <string>查看包裹</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui> 
