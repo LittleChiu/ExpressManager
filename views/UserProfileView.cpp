@@ -18,7 +18,6 @@ UserProfileView::~UserProfileView() {
 
 void UserProfileView::setUserId(int id) {
     userId = id;
-    // 显示当前手机号
     User user = UserController::instance().getUserById(userId);
     ui->phoneLabel->setText(user.phone);
 }
@@ -27,7 +26,8 @@ void UserProfileView::onUpdatePhoneClicked() {
     if (userId == -1) return;
     QString newPhone = QInputDialog::getText(this, "修改手机号", "新手机号:");
     if (newPhone.isEmpty()) return;
-    if (UserController::instance().modifyUser(userId, "", newPhone)) {
+    auto user = UserController::instance().getUserById(userId);
+    if (UserController::instance().modifyUser(userId, user.username, newPhone)) {
         QMessageBox::information(this, "成功", "手机号修改成功");
         ui->phoneLabel->setText(newPhone);
     } else {

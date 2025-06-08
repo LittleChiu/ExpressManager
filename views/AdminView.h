@@ -6,6 +6,8 @@
 #include "ExpressCompanyView.h"
 #include "UserManageView.h"
 #include "UserProfileView.h"
+#include "PickupView.h"
+#include "FeedbackView.h"
 
 namespace Ui {
 class AdminView;
@@ -26,4 +28,6 @@ private:
     ExpressCompanyView* expressCompanyView = nullptr;
     UserManageView* userManageView = nullptr;
     UserProfileView* userProfileView = nullptr;
+    PickupView* pickupView = nullptr;
+    FeedbackView* feedbackView = nullptr;
 }; 

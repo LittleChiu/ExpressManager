@@ -21,6 +21,7 @@ PickupCabinetView::PickupCabinetView(QWidget *parent)
     connect(ui->updateCabinetButton, &QPushButton::clicked, this, &PickupCabinetView::onUpdateCabinetClicked);
     connect(ui->cabinetTableWidget, &QTableWidget::cellClicked, this, &PickupCabinetView::onCabinetTableItemClicked);
     connect(ui->viewPackagesButton, &QPushButton::clicked, this, &PickupCabinetView::onViewPackagesClicked);
+    connect(ui->refreshCabinetButton, &QPushButton::clicked, this, &PickupCabinetView::refreshCabinetTable);
     refreshCabinetTable();
 }
 

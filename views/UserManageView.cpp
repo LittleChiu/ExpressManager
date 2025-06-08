@@ -26,6 +26,7 @@ UserManageView::UserManageView(QWidget *parent)
     connect(ui->resetPasswordButton, &QPushButton::clicked, this, &UserManageView::onResetPasswordClicked);
     connect(ui->userTableWidget, &QTableWidget::cellClicked, this, &UserManageView::onUserTableItemClicked);
     connect(ui->selectExpressCompanyButton, &QPushButton::clicked, this, &UserManageView::onSelectExpressCompanyClicked);
+    connect(ui->refreshUserButton, &QPushButton::clicked, this, &UserManageView::refreshUserTable);
 
     ui->userTableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     connect(ui->userTableWidget, &QTableWidget::itemSelectionChanged, this, [this]() {

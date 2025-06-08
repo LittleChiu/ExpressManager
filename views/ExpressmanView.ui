@@ -26,6 +26,11 @@
        <string>个人信息维护</string>
       </attribute>
      </widget>
+     <widget class="QWidget" name="tabFeedback">
+      <attribute name="title">
+       <string>反馈评价</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
   </layout>

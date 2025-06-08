@@ -58,6 +58,22 @@ AdminView::AdminView(int userId, QWidget *parent)
     if (tabProfile) {
         tabProfile->setLayout(layoutProfile);
     }
+    // 嵌入PickupView
+    pickupView = new PickupView(userId, this);
+    QVBoxLayout* layoutPickup = new QVBoxLayout;
+    layoutPickup->addWidget(pickupView);
+    QWidget* tabPickup = ui->tabWidget->findChild<QWidget*>("tabPickup");
+    if (tabPickup) {
+        tabPickup->setLayout(layoutPickup);
+    }
+    // 嵌入FeedbackView
+    feedbackView = new FeedbackView(userId, this);
+    QVBoxLayout* layoutFeedback = new QVBoxLayout;
+    layoutFeedback->addWidget(feedbackView);
+    QWidget* tabFeedback = ui->tabWidget->findChild<QWidget*>("tabFeedback");
+    if (tabFeedback) {
+        tabFeedback->setLayout(layoutFeedback);
+    }
 }
 
 AdminView::~AdminView()

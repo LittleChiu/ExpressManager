@@ -51,6 +51,13 @@
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="refreshCabinetButton">
+       <property name="text">
+        <string>刷新</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

@@ -21,6 +21,7 @@ PackageView::PackageView(int userId, QWidget *parent)
     connect(ui->addPackageButton, &QPushButton::clicked, this, &PackageView::onAddPackageClicked);
     connect(ui->updateStatusButton, &QPushButton::clicked, this, &PackageView::onUpdateStatusClicked);
     connect(ui->packageTableWidget, &QTableWidget::cellClicked, this, &PackageView::onPackageTableItemClicked);
+    connect(ui->refreshPackageButton, &QPushButton::clicked, this, &PackageView::refreshPackageTable);
     refreshPackageTable();
 }
 

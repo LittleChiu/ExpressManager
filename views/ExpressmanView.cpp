@@ -23,6 +23,14 @@ ExpressmanView::ExpressmanView(int userId, QWidget *parent)
     if (tabProfile) {
         tabProfile->setLayout(layoutProfile);
     }
+    // 嵌入FeedbackView
+    feedbackView = new FeedbackView(userId, this);
+    QVBoxLayout* layoutFeedback = new QVBoxLayout;
+    layoutFeedback->addWidget(feedbackView);
+    QWidget* tabFeedback = ui->tabWidget->findChild<QWidget*>("tabFeedback");
+    if (tabFeedback) {
+        tabFeedback->setLayout(layoutFeedback);
+    }
 }
 
 ExpressmanView::~ExpressmanView() {

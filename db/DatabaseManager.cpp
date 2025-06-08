@@ -4,6 +4,7 @@
 #include <QDebug>
 
 #include "ExpressCompany.h"
+#include "Feedback.h"
 #include "User.h"
 #include "PickupCabinet.h"
 #include "Package.h"
@@ -35,4 +36,5 @@ void DatabaseManager::initDatabase() {
     ExpressCompany::createTable();
     PickupCabinet::createTable();
     Package::createTable();
+    Feedback::createTable();
 }

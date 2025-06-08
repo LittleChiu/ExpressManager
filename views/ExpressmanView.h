@@ -2,6 +2,7 @@
 #include <QWidget>
 #include "PackageView.h"
 #include "UserProfileView.h"
+#include "FeedbackView.h"
 
 namespace Ui {
 class ExpressmanView;
@@ -16,5 +17,6 @@ private:
     Ui::ExpressmanView *ui;
     PackageView* packageView = nullptr;
     UserProfileView* profileView = nullptr;
+    FeedbackView* feedbackView = nullptr;
     int userId = -1;
 }; 
