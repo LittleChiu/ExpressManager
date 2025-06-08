@@ -21,7 +21,7 @@ UserView::UserView(int userId, QWidget *parent)
     QMenu* menu = new QMenu(this);
     QAction* logoutAction = menu->addAction("退出系统");
     QAction* switchAction = menu->addAction("更换账号");
-    connect(userMenuButton, &QPushButton::clicked, this, [=]{
+    connect(userMenuButton, &QPushButton::clicked, this, [&]{
         menu->exec(userMenuButton->mapToGlobal(QPoint(0, userMenuButton->height())));
     });
     connect(logoutAction, &QAction::triggered, this, &UserView::logoutRequested);

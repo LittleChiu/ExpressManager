@@ -14,4 +14,5 @@ public:
     bool removeCabinet(int cabinetId);
     bool updateCabinetInfo(int cabinetId, const QString& newLocation, int newCapacity);
     QList<PickupCabinet> getAllCabinets();
+    bool createTable();
 }; 

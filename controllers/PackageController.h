@@ -10,7 +10,7 @@ public:
         return instance;
     }
 
-
+    static bool createTable();
     bool addPackage(const Package& pkg);
     bool updateStatus(int packageId, PackageStatus newStatus);
     QList<Package> getAllPackages();

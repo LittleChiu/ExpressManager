@@ -13,8 +13,14 @@ public:
     UserRole role;
     QString expressCompanyIds; // 快递员隶属公司ID列表，逗号分隔
 
-    static bool createTable();
-    static User fromQuery(const QSqlQuery& query);
-    static QList<User> getAll();
-    static bool addUser(const QString& username, const QString& phone, const QString& password, UserRole role, const QString& expressCompanyIds = "");
+    static User fromQuery(const QSqlQuery& query) {
+        User u;
+        u.id = query.value("id").toInt();
+        u.username = query.value("username").toString();
+        u.phone = query.value("phone").toString();
+        u.role = static_cast<UserRole>(query.value("role").toInt());
+        u.expressCompanyIds = query.value("expressCompanyIds").toString();
+        return u;
+    }
+
 }; 

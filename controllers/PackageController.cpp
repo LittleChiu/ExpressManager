@@ -1,21 +1,73 @@
 #include "PackageController.h"
 
 bool PackageController::addPackage(const Package& pkg) {
-    return Package::addPackage(pkg);
+    QSqlQuery query;
+    query.prepare("INSERT INTO Package (volume, weight, isFragile, status, location, storedTime, expressCompanyId, recipientId, expressmanId) "
+                  "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    query.addBindValue(pkg.volume);
+    query.addBindValue(pkg.weight);
+    query.addBindValue(pkg.isFragile ? 1 : 0);
+    query.addBindValue(static_cast<int>(pkg.status));
+    query.addBindValue(pkg.location);
+    query.addBindValue(pkg.storedTime);
+    query.addBindValue(pkg.expressCompanyId);
+    query.addBindValue(pkg.recipientId);
+    query.addBindValue(pkg.expressmanId);
+    return query.exec();
 }
 
 bool PackageController::updateStatus(int packageId, PackageStatus newStatus) {
-    return Package::updateStatus(packageId, newStatus);
+    QSqlQuery query;
+    query.prepare("UPDATE Package SET status = ? WHERE packageId = ?");
+    query.addBindValue(static_cast<int>(newStatus));
+    query.addBindValue(packageId);
+    return query.exec();
 }
 
 QList<Package> PackageController::getAllPackages() {
-    return Package::getAll();
+    QList<Package> list;
+    QSqlQuery query("SELECT * FROM Package");
+    while (query.next()) {
+        list.append(Package::fromQuery(query));
+    }
+    return list;
 }
 
 QList<Package> PackageController::queryPackagesByRecipient(int recipientId) {
-    return Package::queryByRecipient(recipientId);
+    QList<Package> list;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Package WHERE recipientId = ?");
+    query.addBindValue(recipientId);
+    query.exec();
+    while (query.next()) {
+        list.append(Package::fromQuery(query));
+    }
+    return list;
 }
 
 QList<Package> PackageController::queryByLocationAndStatus(const QString& location, PackageStatus status) {
-    return Package::queryByLocationAndStatus(location, status);
-} 
+    QList<Package> list;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Package WHERE location = ? AND status = ?");
+    query.addBindValue(location);
+    query.addBindValue(static_cast<int>(status));
+    query.exec();
+    while (query.next()) {
+        list.append(Package::fromQuery(query));
+    }
+    return list;
+}
+bool PackageController::createTable() {
+    QSqlQuery query;
+    return query.exec("CREATE TABLE IF NOT EXISTS Package ("
+                      "packageId INTEGER PRIMARY KEY AUTOINCREMENT,"
+                      "volume REAL,"
+                      "weight REAL,"
+                      "isFragile INTEGER,"
+                      "status INTEGER,"
+                      "location TEXT,"
+                      "storedTime INTEGER,"
+                      "expressCompanyId INTEGER,"
+                      "recipientId INTEGER,"
+                      "expressmanId INTEGER)");
+}

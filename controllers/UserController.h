@@ -22,7 +22,7 @@ public:
     QList<User> getAllUsers();
     User getUserById(int userId);
     bool updateExpressCompanies(int userId, const QString& expressCompanyIds);
-    // 其他接口...
+    bool createTable();
 private:
     UserController() {}
 }; 

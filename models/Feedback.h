@@ -10,9 +10,12 @@ public:
     double rating;
     QString comment;
 
-    static bool createTable();
-    static Feedback fromQuery(const QSqlQuery& query);
-    static QList<Feedback> getAll();
-    static bool addFeedback(const Feedback& fb);
-    static QList<Feedback> queryByPackage(int packageId);
+    static Feedback fromQuery(const QSqlQuery& query) {
+        Feedback fb;
+        fb.feedbackId = query.value("feedbackId").toInt();
+        fb.packageId = query.value("packageId").toInt();
+        fb.rating = query.value("rating").toDouble();
+        fb.comment = query.value("comment").toString();
+        return fb;
+    }
 }; 

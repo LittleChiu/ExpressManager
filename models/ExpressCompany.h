@@ -8,10 +8,11 @@ public:
     QString name;
     double packageFee;
 
-    static bool createTable();
-    static ExpressCompany fromQuery(const QSqlQuery& query);
-    static QList<ExpressCompany> getAll();
-    static bool addCompany(const QString& name, double fee);
-    static bool removeCompany(int companyId);
-    static bool updateFee(int companyId, double newFee);
+    static ExpressCompany fromQuery(const QSqlQuery& query) {
+        ExpressCompany c;
+        c.companyId = query.value("companyId").toInt();
+        c.name = query.value("name").toString();
+        c.packageFee = query.value("packageFee").toDouble();
+        return c;
+    }
 }; 

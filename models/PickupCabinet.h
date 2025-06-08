@@ -10,10 +10,12 @@ public:
     int capacity;
     QString storedPackageIds; // 用逗号分隔的包裹ID字符串
 
-    static bool createTable();
-    static PickupCabinet fromQuery(const QSqlQuery& query);
-    static QList<PickupCabinet> getAll();
-    static bool addCabinet(const QString& location, int capacity);
-    static bool removeCabinet(int cabinetId);
-    static bool updateCabinetInfo(int cabinetId, const QString& newLocation, int newCapacity);
+    static PickupCabinet fromQuery(const QSqlQuery& query) {
+        PickupCabinet c;
+        c.cabinetId = query.value("cabinetId").toInt();
+        c.location = query.value("location").toString();
+        c.capacity = query.value("capacity").toInt();
+        c.storedPackageIds = query.value("storedPackageIds").toString();
+        return c;
+    }
 }; 

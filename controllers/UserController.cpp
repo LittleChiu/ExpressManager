@@ -11,7 +11,14 @@ QString encryptPassword(const QString& password) {
 }
 
 bool UserController::addUser(const QString& name, const QString& phone, const QString& password) {
-    return User::addUser(name,phone,encryptPassword(password),UserRole::RECIPIENT);
+    QSqlQuery query;
+    query.prepare("INSERT INTO User (username, phone, passwordEncrypted, role, expressCompanyIds) VALUES (?, ?, ?, ?, ?)");
+    query.addBindValue(name);
+    query.addBindValue(phone);
+    query.addBindValue(encryptPassword(password));
+    query.addBindValue(static_cast<int>(UserRole::RECIPIENT));
+    query.addBindValue("");
+    return query.exec();
 }
 
 bool UserController::deleteUser(int userId) {
@@ -55,7 +62,12 @@ bool UserController::updateExpressCompanies(int userId, const QString& expressCo
 }
 
 QList<User> UserController::getAllUsers() {
-    return User::getAll();
+    QList<User> list;
+    QSqlQuery query("SELECT * FROM User");
+    while (query.next()) {
+        list.append(User::fromQuery(query));
+    }
+    return list;
 }
 
 std::optional<User> UserController::loginByPhone(const QString& phone, const QString& password) {
@@ -78,4 +90,15 @@ User UserController::getUserById(int userId) {
         if (u.id == userId) return u;
     }
     return User();
-} 
+}
+bool UserController::createTable() {
+    QSqlQuery query;
+    return query.exec("CREATE TABLE IF NOT EXISTS User ("
+                      "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                      "username TEXT,"
+                      "phone TEXT,"
+                      "passwordEncrypted TEXT,"
+                      "role INTEGER,"
+                      "expressCompanyIds TEXT DEFAULT ''"
+                      ")");
+}

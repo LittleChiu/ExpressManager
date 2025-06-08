@@ -4,10 +4,12 @@
 #include <QDebug>
 
 #include "ExpressCompany.h"
-#include "Feedback.h"
-#include "User.h"
-#include "PickupCabinet.h"
-#include "Package.h"
+#include "ExpressCompanyController.h"
+#include "FeedbackController.h"
+
+#include "PackageController.h"
+#include "PickupCabinetController.h"
+#include "UserController.h"
 
 QSqlDatabase& DatabaseManager::getDatabase() {
     static QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
@@ -32,9 +34,9 @@ void DatabaseManager::initDatabase() {
     }
 
     // 自动建表
-    User::createTable();
-    ExpressCompany::createTable();
-    PickupCabinet::createTable();
-    Package::createTable();
-    Feedback::createTable();
+    UserController::instance().createTable();
+    ExpressCompanyController::instance().createTable();
+    PickupCabinetController::instance().createTable();
+    PackageController::instance().createTable();
+    FeedbackController::instance().createTable();
 }

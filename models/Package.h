@@ -17,11 +17,18 @@ public:
     int recipientId;
     int expressmanId;
 
-    static bool createTable();
-    static Package fromQuery(const QSqlQuery& query);
-    static QList<Package> getAll();
-    static bool addPackage(const Package& pkg);
-    static bool updateStatus(int packageId, PackageStatus newStatus);
-    static QList<Package> queryByRecipient(int recipientId);
-    static QList<Package> queryByLocationAndStatus(const QString& location, PackageStatus status);
+    static Package fromQuery(const QSqlQuery& query) {
+        Package pkg;
+        pkg.packageId = query.value("packageId").toInt();
+        pkg.volume = query.value("volume").toDouble();
+        pkg.weight = query.value("weight").toDouble();
+        pkg.isFragile = query.value("isFragile").toInt() != 0;
+        pkg.status = static_cast<PackageStatus>(query.value("status").toInt());
+        pkg.location = query.value("location").toString();
+        pkg.storedTime = query.value("storedTime").toLongLong();
+        pkg.expressCompanyId = query.value("expressCompanyId").toInt();
+        pkg.recipientId = query.value("recipientId").toInt();
+        pkg.expressmanId = query.value("expressmanId").toInt();
+        return pkg;
+    }
 }; 
