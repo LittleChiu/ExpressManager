@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PickupView</class>
+ <widget class="QWidget" name="PickupView">
+  <property name="windowTitle">
+   <string>取件管理</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTableWidget" name="pickupTableWidget"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="refreshPickupButton">
+     <property name="text">
+      <string>刷新</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pickupButton">
+     <property name="text">
+      <string>取件</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui> 

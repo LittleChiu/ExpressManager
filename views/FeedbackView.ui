@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FeedbackView</class>
+ <widget class="QWidget" name="FeedbackView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>274</width>
+    <height>270</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>反馈评价</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTableWidget" name="feedbackTableWidget"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="refreshFeedbackButton">
+     <property name="text">
+      <string>刷新</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="submitFeedbackButton">
+     <property name="text">
+      <string>提交评价</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="viewPackageButton">
+     <property name="text">
+      <string>查看包裹信息</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
