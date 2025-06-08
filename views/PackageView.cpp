@@ -34,19 +34,28 @@ void PackageView::refreshPackageTable() {
     ui->packageTableWidget->setHorizontalHeaderLabels(headers);
     ui->packageTableWidget->setRowCount(0);
     auto pkgs = PackageController::instance().getAllPackages();
+    // 判断当前用户是否为管理员
+    bool isAdmin = false;
+    if (currentUserId != -1) {
+        User user = UserController::instance().getUserById(currentUserId);
+        isAdmin = (user.role == UserRole::ADMIN);
+    }
+    int rowIdx = 0;
     for (int i = 0; i < pkgs.size(); ++i) {
         const Package& p = pkgs[i];
-        ui->packageTableWidget->insertRow(i);
-        ui->packageTableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(p.packageId)));
-        ui->packageTableWidget->setItem(i, 1, new QTableWidgetItem(QString::number(p.volume)));
-        ui->packageTableWidget->setItem(i, 2, new QTableWidgetItem(QString::number(p.weight)));
-        ui->packageTableWidget->setItem(i, 3, new QTableWidgetItem(p.isFragile ? "是" : "否"));
+        if (!isAdmin && p.expressmanId != currentUserId) continue; // 非管理员只能看自己投放的
+        ui->packageTableWidget->insertRow(rowIdx);
+        ui->packageTableWidget->setItem(rowIdx, 0, new QTableWidgetItem(QString::number(p.packageId)));
+        ui->packageTableWidget->setItem(rowIdx, 1, new QTableWidgetItem(QString::number(p.volume)));
+        ui->packageTableWidget->setItem(rowIdx, 2, new QTableWidgetItem(QString::number(p.weight)));
+        ui->packageTableWidget->setItem(rowIdx, 3, new QTableWidgetItem(p.isFragile ? "是" : "否"));
         QString statusStr = (p.status == PackageStatus::STORED) ? "已存入柜" : (p.status == PackageStatus::PICKUPED ? "已取件" : "异常");
-        ui->packageTableWidget->setItem(i, 4, new QTableWidgetItem(statusStr));
-        ui->packageTableWidget->setItem(i, 5, new QTableWidgetItem(p.location));
-        ui->packageTableWidget->setItem(i, 6, new QTableWidgetItem(QString::number(p.expressCompanyId)));
-        ui->packageTableWidget->setItem(i, 7, new QTableWidgetItem(QString::number(p.recipientId)));
-        ui->packageTableWidget->setItem(i, 8, new QTableWidgetItem(QString::number(p.expressmanId)));
+        ui->packageTableWidget->setItem(rowIdx, 4, new QTableWidgetItem(statusStr));
+        ui->packageTableWidget->setItem(rowIdx, 5, new QTableWidgetItem(p.location));
+        ui->packageTableWidget->setItem(rowIdx, 6, new QTableWidgetItem(QString::number(p.expressCompanyId)));
+        ui->packageTableWidget->setItem(rowIdx, 7, new QTableWidgetItem(QString::number(p.recipientId)));
+        ui->packageTableWidget->setItem(rowIdx, 8, new QTableWidgetItem(QString::number(p.expressmanId)));
+        rowIdx++;
     }
     ui->packageTableWidget->resizeColumnsToContents();
     selectedPackageId = -1;
