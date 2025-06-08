@@ -15,8 +15,10 @@ public:
 private slots:
     void onUpdatePhoneClicked();
     void onUpdatePasswordClicked();
+    void onUpdateUsernameClicked();
 
 private:
     Ui::UserProfileView *ui;
     int userId = -1;
+    void refreshCompanyLabel();
 }; 
