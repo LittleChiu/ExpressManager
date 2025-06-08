@@ -3,6 +3,7 @@
 #include "views/LoginView.h"
 #include "views/AdminView.h"
 #include "views/ExpressmanView.h"
+#include "views/RecipientView.h"
 #include <QWidget>
 
 int main(int argc, char *argv[]) {
@@ -19,16 +20,21 @@ int main(int argc, char *argv[]) {
             break;
         case UserRole::EXPRESSMAN:
             next = new ExpressmanView(user.id);
-            // TODO: 快递员界面
             break;
         case UserRole::RECIPIENT:
-            // TODO: 收件人界面
+            next = new RecipientView(user.id);
             break;
         }
         if (next) {
             next->setAttribute(Qt::WA_DeleteOnClose);
             next->show();
+            QObject::connect(next, SIGNAL(logoutRequested()), &a, SLOT(quit()));
+            QObject::connect(next, SIGNAL(switchAccountRequested()), next, SLOT(close()));
+            QObject::connect(next, SIGNAL(switchAccountRequested()), &login, SLOT(show()));
         }
     });
+
+
+    
     return a.exec();
 }
