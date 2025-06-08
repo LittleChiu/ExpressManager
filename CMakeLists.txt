@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(CPPCourseDesign)
+project(ExpressManager)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_AUTOMOC ON)  # 如果你用了信号槽，这一行必须保留
@@ -16,7 +16,7 @@ file(GLOB VIEW_SRC views/*.cpp views/*.h)
 file(GLOB DB_SRC db/*.cpp db/*.h)
 file(GLOB UI_FILES views/*.ui)
 
-add_executable(CPPCourseDesign
+add_executable(ExpressManager
     main.cpp
     ${MODEL_SRC}
     ${CONTROLLER_SRC}
@@ -25,7 +25,7 @@ add_executable(CPPCourseDesign
     ${UI_FILES}
 )
 
-target_link_libraries(CPPCourseDesign
+target_link_libraries(ExpressManager
         Qt6::Core
         Qt6::Gui
         Qt6::Widgets
@@ -40,7 +40,7 @@ if(EXISTS "${CMAKE_PREFIX_PATH}/plugins/sqldrivers/qsqlite${DEBUG_SUFFIX}.dll")
             "${CMAKE_PREFIX_PATH}/plugins/sqldrivers/qsqlite${DEBUG_SUFFIX}.dll"
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins/sqldrivers/")
 endif()
-target_include_directories(CPPCourseDesign PRIVATE
+target_include_directories(ExpressManager PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/models
     ${CMAKE_CURRENT_SOURCE_DIR}/controllers
     ${CMAKE_CURRENT_SOURCE_DIR}/views
