@@ -24,6 +24,14 @@ bool PackageController::updateStatus(int packageId, PackageStatus newStatus) {
     return query.exec();
 }
 
+bool PackageController::updatePickupTime(int packageId, qint64 pickupTime) {
+    QSqlQuery query;
+    query.prepare("UPDATE Package SET pickupTime = ? WHERE packageId = ?");
+    query.addBindValue(pickupTime);
+    query.addBindValue(packageId);
+    return query.exec();
+}
+
 QList<Package> PackageController::getAllPackages() {
     QList<Package> list;
     QSqlQuery query("SELECT * FROM Package");
@@ -67,6 +75,7 @@ bool PackageController::createTable() {
                       "status INTEGER,"
                       "location TEXT,"
                       "storedTime INTEGER,"
+                      "pickupTime INTEGER DEFAULT -1,"
                       "expressCompanyId INTEGER,"
                       "recipientId INTEGER,"
                       "expressmanId INTEGER)");

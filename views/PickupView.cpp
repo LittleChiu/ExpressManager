@@ -1,4 +1,7 @@
 #include "PickupView.h"
+
+#include <QDateTime>
+
 #include "ui_PickupView.h"
 #include "PackageController.h"
 #include "FeedbackController.h"
@@ -54,12 +57,13 @@ void PickupView::onPickupClicked() {
         return;
     }
     if (PackageController::instance().updateStatus(selectedPackageId, PackageStatus::PICKUPED)) {
+        PackageController::instance().updatePickupTime(selectedPackageId,QDateTime::currentSecsSinceEpoch());
         Feedback fb;
         fb.packageId = selectedPackageId;
         fb.rating = 0.0;
         fb.comment = "";
         FeedbackController::instance().addFeedback(fb);
-        QMessageBox::information(this, "成功", "取件成功");
+        QMessageBox::information(this, "成功", "取件成功, 记得评价!");
         refreshPickupTable();
     } else {
         QMessageBox::warning(this, "失败", "取件失败");
