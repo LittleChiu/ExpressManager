@@ -158,16 +158,15 @@ void PickupCabinetView::onViewPackagesClicked() {
     QVBoxLayout layout(&dialog);
     QTableWidget table(&dialog);
     table.setColumnCount(6);
-    table.setHorizontalHeaderLabels({"ID", "体积", "重量", "易碎", "公司ID", "收件人ID"});
+    table.setHorizontalHeaderLabels({"ID", "体积", "易碎", "公司ID", "收件人ID"});
     table.setRowCount(pkgs.size());
     for (int i = 0; i < pkgs.size(); ++i) {
         const Package& p = pkgs[i];
         table.setItem(i, 0, new QTableWidgetItem(QString::number(p.packageId)));
         table.setItem(i, 1, new QTableWidgetItem(QString::number(p.volume)));
-        table.setItem(i, 2, new QTableWidgetItem(QString::number(p.weight)));
-        table.setItem(i, 3, new QTableWidgetItem(p.isFragile ? "是" : "否"));
-        table.setItem(i, 4, new QTableWidgetItem(QString::number(p.expressCompanyId)));
-        table.setItem(i, 5, new QTableWidgetItem(QString::number(p.recipientId)));
+        table.setItem(i, 2, new QTableWidgetItem(p.isFragile ? "是" : "否"));
+        table.setItem(i, 3, new QTableWidgetItem(QString::number(p.expressCompanyId)));
+        table.setItem(i, 4, new QTableWidgetItem(QString::number(p.recipientId)));
     }
     table.resizeColumnsToContents();
     layout.addWidget(&table);

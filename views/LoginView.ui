@@ -19,6 +19,11 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
+     <widget class="QWidget" name="tabPickup">
+      <attribute name="title">
+       <string>取货</string>
+      </attribute>
+     </widget>
      <widget class="QWidget" name="tabLogin">
       <attribute name="title">
        <string>登录</string>

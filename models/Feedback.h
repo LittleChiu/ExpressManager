@@ -5,9 +5,9 @@
 
 class Feedback {
 public:
-    int feedbackId;
-    int packageId;
-    double rating;
+    int feedbackId = -1;
+    int packageId = -1;
+    double rating = -1;
     QString comment;
 
     static Feedback fromQuery(const QSqlQuery& query) {
