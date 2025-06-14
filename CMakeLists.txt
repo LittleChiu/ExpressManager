@@ -6,7 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 if (WIN32)
-    set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64")  # Windows Qt 安装路径，macOS 时可在命令行指定
+    set(CMAKE_PREFIX_PATH "D:/Qt/6.9.0/mingw_64")
 endif ()
 if (APPLE)
     set(CMAKE_PREFIX_PATH "/Users/littleqiu/Qt/6.9.0/macos")
@@ -43,7 +43,7 @@ target_link_libraries(ExpressManager
         Qt6::Sql
 )
 
-# === 平台适配 ===
+#平台适配
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(DEBUG_SUFFIX "")
     if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
@@ -90,14 +90,4 @@ endif ()
 if (APPLE)
     set(QT_PLUGIN_PLATFORM_PATH "${CMAKE_PREFIX_PATH}/plugins/platforms")
     set(PLATFORM_PLUGIN "libqcocoa.dylib")
-
-    #    # 拷贝 macOS 平台插件（可选，推荐用 macdeployqt 替代）
-    #    if(EXISTS "${QT_PLUGIN_PLATFORM_PATH}/${PLATFORM_PLUGIN}")
-    #        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    #                COMMAND ${CMAKE_COMMAND} -E make_directory
-    #                "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>/Contents/plugins/platforms/"
-    #                COMMAND ${CMAKE_COMMAND} -E copy
-    #                "${QT_PLUGIN_PLATFORM_PATH}/${PLATFORM_PLUGIN}"
-    #                "$<TARGET_BUNDLE_DIR:${PROJECT_NAME}>/Contents/plugins/platforms/")
-    #    endif()
 endif ()

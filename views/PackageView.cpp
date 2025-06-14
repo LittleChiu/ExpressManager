@@ -106,7 +106,7 @@ void PackageView::onAddPackageClicked() {
     statusCombo.addItems({"已存入柜", "已取件", "异常"});
     QComboBox locationCombo;
     QComboBox companyCombo, recipientCombo;
-    recipientCombo.setEditable(true); // 允许自定义输入
+    recipientCombo.setEditable(true);
     // 填充柜子
     auto cabinets = PickupCabinetController::instance().getAllCabinets();
     for (const auto &cab: cabinets) locationCombo.addItem(QString("%1(%2)").arg(cab.location).arg(cab.cabinetId),
