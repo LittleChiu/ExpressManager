@@ -10,7 +10,7 @@ public:
     double rating = -1;
     QString comment;
 
-    static Feedback fromQuery(const QSqlQuery& query) {
+    static Feedback fromQuery(const QSqlQuery &query) {
         Feedback fb;
         fb.feedbackId = query.value("feedbackId").toInt();
         fb.packageId = query.value("packageId").toInt();
@@ -18,4 +18,4 @@ public:
         fb.comment = query.value("comment").toString();
         return fb;
     }
-}; 
+};

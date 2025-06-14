@@ -11,12 +11,11 @@
 #include "UserController.h"
 
 PickupView::PickupView(int userId, QWidget *parent)
-    : QWidget(parent), ui(new Ui::PickupView), currentUserId(userId)
-{
+    : QWidget(parent), ui(new Ui::PickupView), currentUserId(userId) {
     ui->setupUi(this);
     connect(ui->pickupButton, &QPushButton::clicked, this, &PickupView::onPickupClicked);
-    connect(ui->pickupTableWidget, &QTableWidget::cellClicked, this, [this](int row, int){
-        QTableWidgetItem* idItem = ui->pickupTableWidget->item(row, 0);
+    connect(ui->pickupTableWidget, &QTableWidget::cellClicked, this, [this](int row, int) {
+        QTableWidgetItem *idItem = ui->pickupTableWidget->item(row, 0);
         if (idItem) selectedPackageId = idItem->text().toInt();
     });
     connect(ui->refreshPickupButton, &QPushButton::clicked, this, &PickupView::refreshPickupTable);
@@ -28,13 +27,13 @@ PickupView::~PickupView() {
 }
 
 void PickupView::refreshPickupTable() {
-    QStringList headers = {"ID", "体积",  "易碎", "状态", "入柜时间", "位置", "公司ID", "快递员ID"};
+    QStringList headers = {"ID", "体积", "易碎", "状态", "入柜时间", "位置", "公司ID", "快递员ID"};
     ui->pickupTableWidget->setColumnCount(headers.size());
     ui->pickupTableWidget->setHorizontalHeaderLabels(headers);
     ui->pickupTableWidget->setRowCount(0);
     auto pkgs = PackageController::instance().getAllPackages();
     int rowIdx = 0;
-    for (const auto& p : pkgs) {
+    for (const auto &p: pkgs) {
         if (p.recipientId != currentUserId) continue;
         if (p.status != PackageStatus::STORED) continue;
         ui->pickupTableWidget->insertRow(rowIdx);
@@ -47,7 +46,9 @@ void PickupView::refreshPickupTable() {
         ui->pickupTableWidget->setItem(rowIdx, 5, new QTableWidgetItem(p.location));
         ui->pickupTableWidget->setItem(rowIdx, 6, new QTableWidgetItem(QString::number(p.expressCompanyId)));
         User expressman = UserController::instance().getUserById(p.expressmanId).value();
-        QString expressmanStr = expressman.username.isEmpty() ? "-" : QString("%1(%2)").arg(expressman.username).arg(expressman.id);
+        QString expressmanStr = expressman.username.isEmpty()
+                                    ? "-"
+                                    : QString("%1(%2)").arg(expressman.username).arg(expressman.id);
         ui->pickupTableWidget->setItem(rowIdx, 7, new QTableWidgetItem(expressmanStr));
         rowIdx++;
     }
@@ -61,7 +62,7 @@ void PickupView::onPickupClicked() {
         return;
     }
     if (PackageController::instance().updateStatus(selectedPackageId, PackageStatus::PICKUPED)) {
-        PackageController::instance().updatePickupTime(selectedPackageId,QDateTime::currentSecsSinceEpoch());
+        PackageController::instance().updatePickupTime(selectedPackageId, QDateTime::currentSecsSinceEpoch());
         Feedback fb;
         fb.packageId = selectedPackageId;
         fb.rating = -1;
@@ -72,4 +73,4 @@ void PickupView::onPickupClicked() {
     } else {
         QMessageBox::warning(this, "失败", "取件失败");
     }
-} 
+}

@@ -6,8 +6,7 @@
 #include <QInputDialog>
 
 UserProfileView::UserProfileView(QWidget *parent)
-    : QWidget(parent), ui(new Ui::UserProfileView)
-{
+    : QWidget(parent), ui(new Ui::UserProfileView) {
     ui->setupUi(this);
     connect(ui->updatePhoneButton, &QPushButton::clicked, this, &UserProfileView::onUpdatePhoneClicked);
     connect(ui->updatePasswordButton, &QPushButton::clicked, this, &UserProfileView::onUpdatePasswordClicked);
@@ -84,8 +83,8 @@ void UserProfileView::refreshCompanyLabel() {
     }
     auto companies = ExpressCompanyController::instance().getAllCompanies();
     QStringList names;
-    for (const QString& id : idList) {
-        for (const auto& c : companies) {
+    for (const QString &id: idList) {
+        for (const auto &c: companies) {
             if (QString::number(c.companyId) == id) {
                 names << c.name;
                 break;
@@ -93,4 +92,4 @@ void UserProfileView::refreshCompanyLabel() {
         }
     }
     ui->companyLabel->setText(names.isEmpty() ? "无" : names.join(", "));
-} 
+}

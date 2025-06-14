@@ -13,7 +13,7 @@ public:
     UserRole role;
     QString expressCompanyIds; // 快递员隶属公司ID列表，逗号分隔
 
-    static User fromQuery(const QSqlQuery& query) {
+    static User fromQuery(const QSqlQuery &query) {
         User u;
         u.id = query.value("id").toInt();
         u.username = query.value("username").toString();
@@ -22,5 +22,4 @@ public:
         u.expressCompanyIds = query.value("expressCompanyIds").toString();
         return u;
     }
-
-}; 
+};

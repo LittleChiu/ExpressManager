@@ -8,8 +8,7 @@
 #include <QInputDialog>
 
 FeedbackView::FeedbackView(int userId, QWidget *parent)
-    : QWidget(parent), ui(new Ui::FeedbackView), currentUserId(userId)
-{
+    : QWidget(parent), ui(new Ui::FeedbackView), currentUserId(userId) {
     ui->setupUi(this);
     // 判断身份
     User user = UserController::instance().getUserById(userId).value();
@@ -17,8 +16,8 @@ FeedbackView::FeedbackView(int userId, QWidget *parent)
     connect(ui->refreshFeedbackButton, &QPushButton::clicked, this, &FeedbackView::refreshFeedbackTable);
     connect(ui->submitFeedbackButton, &QPushButton::clicked, this, &FeedbackView::onSubmitFeedbackClicked);
     connect(ui->viewPackageButton, &QPushButton::clicked, this, &FeedbackView::onViewPackageClicked);
-    connect(ui->feedbackTableWidget, &QTableWidget::cellClicked, this, [this](int row, int){
-        QTableWidgetItem* idItem = ui->feedbackTableWidget->item(row, 0);
+    connect(ui->feedbackTableWidget, &QTableWidget::cellClicked, this, [this](int row, int) {
+        QTableWidgetItem *idItem = ui->feedbackTableWidget->item(row, 0);
         if (idItem) selectedFeedbackId = idItem->text().toInt();
     });
     refreshFeedbackTable();
@@ -38,10 +37,10 @@ void FeedbackView::refreshFeedbackTable() {
         // 收件人：只看自己收到的包裹的反馈
         auto pkgs = PackageController::instance().getAllPackages();
         QList<int> myPkgIds;
-        for (const auto& p : pkgs) {
+        for (const auto &p: pkgs) {
             if (p.recipientId == currentUserId) myPkgIds.append(p.packageId);
         }
-        for (int pkgId : myPkgIds) {
+        for (int pkgId: myPkgIds) {
             auto fbs = FeedbackController::instance().getFeedbacksByPackage(pkgId);
             feedbacks.append(fbs);
         }
@@ -49,10 +48,10 @@ void FeedbackView::refreshFeedbackTable() {
         // 快递员：只看自己投递的包裹的反馈
         auto pkgs = PackageController::instance().getAllPackages();
         QList<int> myPkgIds;
-        for (const auto& p : pkgs) {
+        for (const auto &p: pkgs) {
             if (p.expressmanId == currentUserId) myPkgIds.append(p.packageId);
         }
-        for (int pkgId : myPkgIds) {
+        for (int pkgId: myPkgIds) {
             auto fbs = FeedbackController::instance().getFeedbacksByPackage(pkgId);
             feedbacks.append(fbs);
         }
@@ -60,11 +59,11 @@ void FeedbackView::refreshFeedbackTable() {
     // 获取所有用户信息
     auto users = UserController::instance().getAllUsers();
     int rowIdx = 0;
-    for (const auto& fb : feedbacks) {
+    for (const auto &fb: feedbacks) {
         // 查找包裹
         Package pkg;
         auto pkgs = PackageController::instance().getAllPackages();
-        for (const auto& p : pkgs) {
+        for (const auto &p: pkgs) {
             if (p.packageId == fb.packageId) {
                 pkg = p;
                 break;
@@ -72,7 +71,7 @@ void FeedbackView::refreshFeedbackTable() {
         }
         // 查找收件人、派件人用户名
         QString recipientName, expressmanName;
-        for (const auto& u : users) {
+        for (const auto &u: users) {
             if (u.id == pkg.recipientId) recipientName = u.username;
             if (u.id == pkg.expressmanId) expressmanName = u.username;
         }
@@ -97,7 +96,7 @@ void FeedbackView::onSubmitFeedbackClicked() {
     // 查找反馈对应包裹
     Feedback fb;
     auto all = FeedbackController::instance().getAllFeedbacks();
-    for (const auto& f : all) {
+    for (const auto &f: all) {
         if (f.feedbackId == selectedFeedbackId) {
             fb = f;
             break;
@@ -106,7 +105,7 @@ void FeedbackView::onSubmitFeedbackClicked() {
     // 查找包裹收件人
     Package pkg;
     auto pkgs = PackageController::instance().getAllPackages();
-    for (const auto& p : pkgs) {
+    for (const auto &p: pkgs) {
         if (p.packageId == fb.packageId) {
             pkg = p;
             break;
@@ -147,7 +146,7 @@ void FeedbackView::onViewPackageClicked() {
     // 查找反馈对应包裹
     Feedback fb;
     auto all = FeedbackController::instance().getAllFeedbacks();
-    for (const auto& f : all) {
+    for (const auto &f: all) {
         if (f.feedbackId == selectedFeedbackId) {
             fb = f;
             break;
@@ -155,16 +154,18 @@ void FeedbackView::onViewPackageClicked() {
     }
     Package pkg;
     auto pkgs = PackageController::instance().getAllPackages();
-    for (const auto& p : pkgs) {
+    for (const auto &p: pkgs) {
         if (p.packageId == fb.packageId) {
             pkg = p;
             break;
         }
     }
     QString info = QString("包裹ID: %1\n体积: %2\n易碎: %4\n状态: %5\n位置: %6\n公司ID: %7\n收件人ID: %8\n快递员ID: %9")
-        .arg(std::to_string(pkg.packageId)).arg(std::to_string(pkg.volume)).arg(pkg.isFragile ? "是" : "否")
-        .arg((pkg.status == PackageStatus::STORED) ? "已存入柜" : (pkg.status == PackageStatus::PICKUPED ? "已取件" : "异常"))
-        .arg(pkg.location).arg(std::to_string(pkg.expressCompanyId)).arg(std::to_string(pkg.recipientId))
-    .arg(std::to_string(pkg.expressmanId));
+            .arg(std::to_string(pkg.packageId)).arg(std::to_string(pkg.volume)).arg(pkg.isFragile ? "是" : "否")
+            .arg((pkg.status == PackageStatus::STORED)
+                     ? "已存入柜"
+                     : (pkg.status == PackageStatus::PICKUPED ? "已取件" : "异常"))
+            .arg(pkg.location).arg(std::to_string(pkg.expressCompanyId)).arg(std::to_string(pkg.recipientId))
+            .arg(std::to_string(pkg.expressmanId));
     QMessageBox::information(this, "包裹信息", info);
-} 
+}

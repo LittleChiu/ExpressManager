@@ -11,7 +11,7 @@
 #include "PickupCabinetController.h"
 #include "UserController.h"
 
-QSqlDatabase& DatabaseManager::getDatabase() {
+QSqlDatabase &DatabaseManager::getDatabase() {
     static QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("database.db");
     return db;

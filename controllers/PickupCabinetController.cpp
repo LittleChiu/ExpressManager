@@ -1,6 +1,6 @@
 #include "PickupCabinetController.h"
 
-bool PickupCabinetController::addCabinet(const QString& location, int capacity) {
+bool PickupCabinetController::addCabinet(const QString &location, int capacity) {
     QSqlQuery query;
     query.prepare("INSERT INTO PickupCabinet (location, capacity) VALUES (?, ?)");
     query.addBindValue(location);
@@ -15,7 +15,7 @@ bool PickupCabinetController::removeCabinet(int cabinetId) {
     return query.exec();
 }
 
-bool PickupCabinetController::updateCabinetInfo(int cabinetId, const QString& newLocation, int newCapacity) {
+bool PickupCabinetController::updateCabinetInfo(int cabinetId, const QString &newLocation, int newCapacity) {
     QSqlQuery query;
     query.prepare("UPDATE PickupCabinet SET location = ?, capacity = ? WHERE cabinetId = ?");
     query.addBindValue(newLocation);
@@ -32,10 +32,11 @@ QList<PickupCabinet> PickupCabinetController::getAllCabinets() {
     }
     return list;
 }
+
 bool PickupCabinetController::createTable() {
     QSqlQuery query;
     return query.exec("CREATE TABLE IF NOT EXISTS PickupCabinet ("
-                      "cabinetId INTEGER PRIMARY KEY AUTOINCREMENT,"
-                      "location TEXT,"
-                      "capacity INTEGER)");
+        "cabinetId INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "location TEXT,"
+        "capacity INTEGER)");
 }

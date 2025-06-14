@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LoginView</class>
- <widget class="QWidget" name="LoginView">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>387</width>
-    <height>233</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>登录/注册</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QTabWidget" name="tabWidget">
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <widget class="QWidget" name="tabPickup">
-      <attribute name="title">
-       <string>取货</string>
-      </attribute>
-     </widget>
-     <widget class="QWidget" name="tabLogin">
-      <attribute name="title">
-       <string>登录</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayoutLogin">
-       <item>
-        <widget class="QLabel" name="labelPhoneLogin">
-         <property name="text">
-          <string>用户名/手机号:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="phoneEditLogin"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelPasswordLogin">
-         <property name="text">
-          <string>密码:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="passwordEditLogin">
-         <property name="echoMode">
-          <enum>QLineEdit::EchoMode::Password</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="loginButton">
-         <property name="text">
-          <string>登录</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="tabRegister">
-      <attribute name="title">
-       <string>注册</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayoutRegister">
-       <item>
-        <widget class="QLabel" name="labelUsernameRegister">
-         <property name="text">
-          <string>用户名:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="usernameEditRegister"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelPhoneRegister">
-         <property name="text">
-          <string>手机号:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="phoneEditRegister"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="labelPasswordRegister">
-         <property name="text">
-          <string>密码:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="passwordEditRegister">
-         <property name="echoMode">
-          <enum>QLineEdit::EchoMode::Password</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="registerButton">
-         <property name="text">
-          <string>注册</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+    <class>LoginView</class>
+    <widget class="QWidget" name="LoginView">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>387</width>
+                <height>233</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>登录/注册</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <widget class="QTabWidget" name="tabWidget">
+                    <property name="currentIndex">
+                        <number>0</number>
+                    </property>
+                    <widget class="QWidget" name="tabPickup">
+                        <attribute name="title">
+                            <string>取货</string>
+                        </attribute>
+                    </widget>
+                    <widget class="QWidget" name="tabLogin">
+                        <attribute name="title">
+                            <string>登录</string>
+                        </attribute>
+                        <layout class="QVBoxLayout" name="verticalLayoutLogin">
+                            <item>
+                                <widget class="QLabel" name="labelPhoneLogin">
+                                    <property name="text">
+                                        <string>用户名/手机号:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QLineEdit" name="phoneEditLogin"/>
+                            </item>
+                            <item>
+                                <widget class="QLabel" name="labelPasswordLogin">
+                                    <property name="text">
+                                        <string>密码:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QLineEdit" name="passwordEditLogin">
+                                    <property name="echoMode">
+                                        <enum>QLineEdit::EchoMode::Password</enum>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QPushButton" name="loginButton">
+                                    <property name="text">
+                                        <string>登录</string>
+                                    </property>
+                                </widget>
+                            </item>
+                        </layout>
+                    </widget>
+                    <widget class="QWidget" name="tabRegister">
+                        <attribute name="title">
+                            <string>注册</string>
+                        </attribute>
+                        <layout class="QVBoxLayout" name="verticalLayoutRegister">
+                            <item>
+                                <widget class="QLabel" name="labelUsernameRegister">
+                                    <property name="text">
+                                        <string>用户名:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QLineEdit" name="usernameEditRegister"/>
+                            </item>
+                            <item>
+                                <widget class="QLabel" name="labelPhoneRegister">
+                                    <property name="text">
+                                        <string>手机号:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QLineEdit" name="phoneEditRegister"/>
+                            </item>
+                            <item>
+                                <widget class="QLabel" name="labelPasswordRegister">
+                                    <property name="text">
+                                        <string>密码:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QLineEdit" name="passwordEditRegister">
+                                    <property name="echoMode">
+                                        <enum>QLineEdit::EchoMode::Password</enum>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QPushButton" name="registerButton">
+                                    <property name="text">
+                                        <string>注册</string>
+                                    </property>
+                                </widget>
+                            </item>
+                        </layout>
+                    </widget>
+                </widget>
+            </item>
+        </layout>
     </widget>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+    <resources/>
+    <connections/>
 </ui>

@@ -11,19 +11,19 @@ int main(int argc, char *argv[]) {
     DatabaseManager::initDatabase();
     LoginView login;
     login.show();
-    QObject::connect(&login, &LoginView::loginSuccess, [&](const User& user){
+    QObject::connect(&login, &LoginView::loginSuccess, [&](const User &user) {
         login.hide();
-        QWidget* next = nullptr;
+        QWidget *next = nullptr;
         switch (user.role) {
-        case UserRole::ADMIN:
-            next = new AdminView(user.id);
-            break;
-        case UserRole::EXPRESSMAN:
-            next = new ExpressmanView(user.id);
-            break;
-        case UserRole::RECIPIENT:
-            next = new RecipientView(user.id);
-            break;
+            case UserRole::ADMIN:
+                next = new AdminView(user.id);
+                break;
+            case UserRole::EXPRESSMAN:
+                next = new ExpressmanView(user.id);
+                break;
+            case UserRole::RECIPIENT:
+                next = new RecipientView(user.id);
+                break;
         }
         if (next) {
             next->setAttribute(Qt::WA_DeleteOnClose);
@@ -35,6 +35,5 @@ int main(int argc, char *argv[]) {
     });
 
 
-    
     return a.exec();
 }

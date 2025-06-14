@@ -5,11 +5,12 @@
 #include "UserProfileView.h"
 
 namespace Ui {
-class RecipientView;
+    class RecipientView;
 }
 
 class RecipientView : public UserView {
     Q_OBJECT
+
 public:
     explicit RecipientView(int userId, QWidget *parent = nullptr)
         : UserView(userId, parent) {
@@ -19,6 +20,6 @@ public:
         profile->setUserId(userId);
         addTab(profile, "个人信息维护");
     }
-    ~RecipientView() override = default;
 
-}; 
+    ~RecipientView() override = default;
+};

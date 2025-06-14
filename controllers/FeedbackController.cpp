@@ -1,6 +1,6 @@
 #include "FeedbackController.h"
 
-bool FeedbackController::addFeedback(const Feedback& fb) {
+bool FeedbackController::addFeedback(const Feedback &fb) {
     QSqlQuery query;
     query.prepare("INSERT INTO Feedback (packageId, rating, comment) VALUES (?, ?, ?)");
     query.addBindValue(fb.packageId);
@@ -29,11 +29,12 @@ QList<Feedback> FeedbackController::getFeedbacksByPackage(int packageId) {
     }
     return list;
 }
+
 bool FeedbackController::createTable() {
     QSqlQuery query;
     return query.exec("CREATE TABLE IF NOT EXISTS Feedback ("
-                      "feedbackId INTEGER PRIMARY KEY AUTOINCREMENT,"
-                      "packageId INTEGER,"
-                      "rating REAL,"
-                      "comment TEXT)");
+        "feedbackId INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "packageId INTEGER,"
+        "rating REAL,"
+        "comment TEXT)");
 }

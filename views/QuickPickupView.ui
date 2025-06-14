@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QuickPickupView</class>
- <widget class="QWidget" name="QuickPickupView">
-  <property name="windowTitle">
-   <string>快速取件</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QLabel" name="labelTitle">
-     <property name="text">
-      <string>请输入取件码</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
+    <class>QuickPickupView</class>
+    <widget class="QWidget" name="QuickPickupView">
+        <property name="windowTitle">
+            <string>快速取件</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <widget class="QLabel" name="labelTitle">
+                    <property name="text">
+                        <string>请输入取件码</string>
+                    </property>
+                    <property name="alignment">
+                        <set>Qt::AlignCenter</set>
+                    </property>
+                </widget>
+            </item>
+            <item>
+                <widget class="QLineEdit" name="pickupCodeEdit">
+                    <property name="placeholderText">
+                        <string>6位取件码</string>
+                    </property>
+                    <property name="maxLength">
+                        <number>6</number>
+                    </property>
+                </widget>
+            </item>
+            <item>
+                <widget class="QPushButton" name="pickupButton">
+                    <property name="text">
+                        <string>取件</string>
+                    </property>
+                </widget>
+            </item>
+        </layout>
     </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="pickupCodeEdit">
-     <property name="placeholderText">
-      <string>6位取件码</string>
-     </property>
-     <property name="maxLength">
-      <number>6</number>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="pickupButton">
-     <property name="text">
-      <string>取件</string>
-     </property>
-    </widget>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+    <resources/>
+    <connections/>
 </ui> 

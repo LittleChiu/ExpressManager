@@ -19,7 +19,7 @@ public:
     QString pickupCode;
     qint64 pickupTime = -1;
 
-    static Package fromQuery(const QSqlQuery& query) {
+    static Package fromQuery(const QSqlQuery &query) {
         Package pkg;
         pkg.packageId = query.value("packageId").toInt();
         pkg.volume = query.value("volume").toDouble();
@@ -34,4 +34,4 @@ public:
         pkg.pickupTime = query.value("pickupTime").toLongLong();
         return pkg;
     }
-}; 
+};

@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>UserManageView</class>
- <widget class="QWidget" name="UserManageView">
-  <property name="windowTitle">
-   <string>用户管理</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QTableWidget" name="userTableWidget"/>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayoutUserInput">
-     <item>
-      <widget class="QLineEdit" name="userNameEdit">
-       <property name="placeholderText">
-        <string>用户名</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="userPhoneEdit">
-       <property name="placeholderText">
-        <string>手机号</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="userRoleCombo">
-       <item>
-        <property name="text">
-         <string>收件人</string>
+    <class>UserManageView</class>
+    <widget class="QWidget" name="UserManageView">
+        <property name="windowTitle">
+            <string>用户管理</string>
         </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>快递员</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>管理员</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="addUserButton">
-       <property name="text">
-        <string>添加用户</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="modifyUserButton">
-       <property name="text">
-        <string>修改用户</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="deleteUserButton">
-       <property name="text">
-        <string>删除用户</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="resetPasswordButton">
-       <property name="text">
-        <string>重置密码</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="refreshUserButton">
-       <property name="text">
-        <string>刷新</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayoutExpressCompany">
-     <item>
-      <widget class="QLabel" name="labelExpressCompany">
-       <property name="text">
-        <string>快递员所属公司：</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="expressCompanyLineEdit">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-       <property name="placeholderText">
-        <string>请选择快递公司</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="selectExpressCompanyButton">
-       <property name="text">
-        <string>选择公司</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <widget class="QTableWidget" name="userTableWidget"/>
+            </item>
+            <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutUserInput">
+                    <item>
+                        <widget class="QLineEdit" name="userNameEdit">
+                            <property name="placeholderText">
+                                <string>用户名</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QLineEdit" name="userPhoneEdit">
+                            <property name="placeholderText">
+                                <string>手机号</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QComboBox" name="userRoleCombo">
+                            <item>
+                                <property name="text">
+                                    <string>收件人</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>快递员</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>管理员</string>
+                                </property>
+                            </item>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="addUserButton">
+                            <property name="text">
+                                <string>添加用户</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="modifyUserButton">
+                            <property name="text">
+                                <string>修改用户</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="deleteUserButton">
+                            <property name="text">
+                                <string>删除用户</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="resetPasswordButton">
+                            <property name="text">
+                                <string>重置密码</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="refreshUserButton">
+                            <property name="text">
+                                <string>刷新</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </item>
+            <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutExpressCompany">
+                    <item>
+                        <widget class="QLabel" name="labelExpressCompany">
+                            <property name="text">
+                                <string>快递员所属公司：</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QLineEdit" name="expressCompanyLineEdit">
+                            <property name="readOnly">
+                                <bool>true</bool>
+                            </property>
+                            <property name="placeholderText">
+                                <string>请选择快递公司</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="selectExpressCompanyButton">
+                            <property name="text">
+                                <string>选择公司</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
 </ui> 

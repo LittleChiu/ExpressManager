@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ExpressCompanyView</class>
- <widget class="QWidget" name="ExpressCompanyView">
-  <property name="windowTitle">
-   <string>快递公司管理</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QListWidget" name="companyListWidget"/>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayoutButtons">
-     <item>
-      <widget class="QPushButton" name="addCompanyButton">
-       <property name="text">
-        <string>添加公司</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="removeCompanyButton">
-       <property name="text">
-        <string>删除公司</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="updateFeeButton">
-       <property name="text">
-        <string>修改费用</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="refreshCompanyButton">
-       <property name="text">
-        <string>刷新</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+    <class>ExpressCompanyView</class>
+    <widget class="QWidget" name="ExpressCompanyView">
+        <property name="windowTitle">
+            <string>快递公司管理</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <widget class="QListWidget" name="companyListWidget"/>
+            </item>
+            <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutButtons">
+                    <item>
+                        <widget class="QPushButton" name="addCompanyButton">
+                            <property name="text">
+                                <string>添加公司</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="removeCompanyButton">
+                            <property name="text">
+                                <string>删除公司</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="updateFeeButton">
+                            <property name="text">
+                                <string>修改费用</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="refreshCompanyButton">
+                            <property name="text">
+                                <string>刷新</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
 </ui> 

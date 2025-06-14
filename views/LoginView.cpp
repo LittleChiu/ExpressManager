@@ -6,17 +6,15 @@
 #include <QMessageBox>
 #include "QuickPickupView.h"
 
-LoginView::LoginView(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::LoginView)
-{
+LoginView::LoginView(QWidget *parent) : QWidget(parent),
+                                        ui(new Ui::LoginView) {
     ui->setupUi(this);
     connect(ui->loginButton, &QPushButton::clicked, this, &LoginView::onLoginClicked);
     connect(ui->registerButton, &QPushButton::clicked, this, &LoginView::onRegisterClicked);
 
     // 在tabPickup中添加QuickPickupView
     quickPickupView = new QuickPickupView(this);
-    QVBoxLayout* layout = new QVBoxLayout(ui->tabPickup);
+    QVBoxLayout *layout = new QVBoxLayout(ui->tabPickup);
     layout->addWidget(quickPickupView);
     ui->tabPickup->setLayout(layout);
 }
@@ -34,10 +32,9 @@ void LoginView::onLoginClicked() {
         if (userOpt2.has_value()) {
             emit loginSuccess(userOpt2.value());
             QMessageBox::information(this, "登录成功", "欢迎回来！");
-        }else {
+        } else {
             QMessageBox::warning(this, "登录失败", "用户名手机号或密码错误");
         }
-
     } else {
         emit loginSuccess(userOpt.value());
         QMessageBox::information(this, "登录成功", "欢迎回来！");

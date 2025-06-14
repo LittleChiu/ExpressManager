@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PackageView</class>
- <widget class="QWidget" name="PackageView">
-  <property name="windowTitle">
-   <string>包裹管理</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QTableWidget" name="packageTableWidget">
-     <property name="columnCount">
-      <number>10</number>
-     </property>
-     <property name="horizontalHeaderLabels">
-      <stringlist>
-       <string>ID</string>
-       <string>体积</string>
-       <string>易碎</string>
-       <string>状态</string>
-       <string>入柜时间</string>
-       <string>出柜时间</string>
-       <string>取件码</string>
-       <string>位置</string>
-       <string>公司ID</string>
-       <string>收件人ID</string>
-       <string>快递员ID</string>
-      </stringlist>
-     </property>
+    <class>PackageView</class>
+    <widget class="QWidget" name="PackageView">
+        <property name="windowTitle">
+            <string>包裹管理</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <widget class="QTableWidget" name="packageTableWidget">
+                    <property name="columnCount">
+                        <number>10</number>
+                    </property>
+                    <property name="horizontalHeaderLabels">
+                        <stringlist>
+                            <string>ID</string>
+                            <string>体积</string>
+                            <string>易碎</string>
+                            <string>状态</string>
+                            <string>入柜时间</string>
+                            <string>出柜时间</string>
+                            <string>取件码</string>
+                            <string>位置</string>
+                            <string>公司ID</string>
+                            <string>收件人ID</string>
+                            <string>快递员ID</string>
+                        </stringlist>
+                    </property>
+                </widget>
+            </item>
+            <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutButtons">
+                    <item>
+                        <widget class="QPushButton" name="addPackageButton">
+                            <property name="text">
+                                <string>添加包裹</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="updateStatusButton">
+                            <property name="text">
+                                <string>修改状态</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="refreshPackageButton">
+                            <property name="text">
+                                <string>刷新</string>
+                            </property>
+                        </widget>
+                    </item>
+                </layout>
+            </item>
+        </layout>
     </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayoutButtons">
-     <item>
-      <widget class="QPushButton" name="addPackageButton">
-       <property name="text">
-        <string>添加包裹</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="updateStatusButton">
-       <property name="text">
-        <string>修改状态</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="refreshPackageButton">
-       <property name="text">
-        <string>刷新</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
- </widget>
- <resources/>
- <connections/>
+    <resources/>
+    <connections/>
 </ui> 

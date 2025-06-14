@@ -4,23 +4,26 @@
 #include "QuickPickupView.h"
 
 namespace Ui {
-class LoginView;
+    class LoginView;
 }
 
 class LoginView : public QWidget {
     Q_OBJECT
+
 public:
     explicit LoginView(QWidget *parent = nullptr);
+
     ~LoginView();
 
 signals:
-    void loginSuccess(const User& user);
+    void loginSuccess(const User &user);
 
 private slots:
     void onLoginClicked();
+
     void onRegisterClicked();
 
 private:
     Ui::LoginView *ui;
-    QuickPickupView* quickPickupView = nullptr;
-}; 
+    QuickPickupView *quickPickupView = nullptr;
+};

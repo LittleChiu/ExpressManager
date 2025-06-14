@@ -1,6 +1,6 @@
 #include "ExpressCompanyController.h"
 
-bool ExpressCompanyController::addCompany(const QString& name, double fee) {
+bool ExpressCompanyController::addCompany(const QString &name, double fee) {
     QSqlQuery query;
     query.prepare("INSERT INTO ExpressCompany (name, packageFee) VALUES (?, ?)");
     query.addBindValue(name);
@@ -31,10 +31,11 @@ QList<ExpressCompany> ExpressCompanyController::getAllCompanies() {
     }
     return list;
 }
+
 bool ExpressCompanyController::createTable() {
     QSqlQuery query;
     return query.exec("CREATE TABLE IF NOT EXISTS ExpressCompany ("
-                      "companyId INTEGER PRIMARY KEY AUTOINCREMENT,"
-                      "name TEXT UNIQUE,"
-                      "packageFee REAL)");
+        "companyId INTEGER PRIMARY KEY AUTOINCREMENT,"
+        "name TEXT UNIQUE,"
+        "packageFee REAL)");
 }

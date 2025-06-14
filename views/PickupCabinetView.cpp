@@ -13,8 +13,7 @@
 #include "PackageController.h"
 
 PickupCabinetView::PickupCabinetView(QWidget *parent)
-    : QWidget(parent), ui(new Ui::PickupCabinetView)
-{
+    : QWidget(parent), ui(new Ui::PickupCabinetView) {
     ui->setupUi(this);
     connect(ui->addCabinetButton, &QPushButton::clicked, this, &PickupCabinetView::onAddCabinetClicked);
     connect(ui->removeCabinetButton, &QPushButton::clicked, this, &PickupCabinetView::onRemoveCabinetClicked);
@@ -36,7 +35,7 @@ void PickupCabinetView::refreshCabinetTable() {
     ui->cabinetTableWidget->setRowCount(0);
     auto cabinets = PickupCabinetController::instance().getAllCabinets();
     for (int i = 0; i < cabinets.size(); ++i) {
-        const PickupCabinet& c = cabinets[i];
+        const PickupCabinet &c = cabinets[i];
         ui->cabinetTableWidget->insertRow(i);
         ui->cabinetTableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(c.cabinetId)));
         ui->cabinetTableWidget->setItem(i, 1, new QTableWidgetItem(c.location));
@@ -97,7 +96,7 @@ void PickupCabinetView::onUpdateCabinetClicked() {
     // 获取当前柜子信息
     PickupCabinet cab;
     auto cabinets = PickupCabinetController::instance().getAllCabinets();
-    for (const auto& c : cabinets) {
+    for (const auto &c: cabinets) {
         if (c.cabinetId == selectedCabinetId) {
             cab = c;
             break;
@@ -131,7 +130,7 @@ void PickupCabinetView::onUpdateCabinetClicked() {
 }
 
 void PickupCabinetView::onCabinetTableItemClicked(int row, int) {
-    QTableWidgetItem* idItem = ui->cabinetTableWidget->item(row, 0);
+    QTableWidgetItem *idItem = ui->cabinetTableWidget->item(row, 0);
     if (!idItem) return;
     selectedCabinetId = idItem->text().toInt();
 }
@@ -144,7 +143,7 @@ void PickupCabinetView::onViewPackagesClicked() {
     // 获取当前柜子信息
     PickupCabinet cab;
     auto cabinets = PickupCabinetController::instance().getAllCabinets();
-    for (const auto& c : cabinets) {
+    for (const auto &c: cabinets) {
         if (c.cabinetId == selectedCabinetId) {
             cab = c;
             break;
@@ -160,7 +159,7 @@ void PickupCabinetView::onViewPackagesClicked() {
     table.setHorizontalHeaderLabels({"ID", "体积", "易碎", "公司ID", "收件人ID"});
     table.setRowCount(pkgs.size());
     for (int i = 0; i < pkgs.size(); ++i) {
-        const Package& p = pkgs[i];
+        const Package &p = pkgs[i];
         table.setItem(i, 0, new QTableWidgetItem(QString::number(p.packageId)));
         table.setItem(i, 1, new QTableWidgetItem(QString::number(p.volume)));
         table.setItem(i, 2, new QTableWidgetItem(p.isFragile ? "是" : "否"));
@@ -173,4 +172,4 @@ void PickupCabinetView::onViewPackagesClicked() {
     layout.addWidget(&buttonBox);
     QObject::connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
     dialog.exec();
-} 
+}
