@@ -30,7 +30,7 @@ PickupCabinetView::~PickupCabinetView() {
 }
 
 void PickupCabinetView::refreshCabinetTable() {
-    QStringList headers = {"ID", "位置", "容量", "包裹ID列表"};
+    QStringList headers = {"ID", "位置", "容量"};
     ui->cabinetTableWidget->setColumnCount(headers.size());
     ui->cabinetTableWidget->setHorizontalHeaderLabels(headers);
     ui->cabinetTableWidget->setRowCount(0);
@@ -41,7 +41,6 @@ void PickupCabinetView::refreshCabinetTable() {
         ui->cabinetTableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(c.cabinetId)));
         ui->cabinetTableWidget->setItem(i, 1, new QTableWidgetItem(c.location));
         ui->cabinetTableWidget->setItem(i, 2, new QTableWidgetItem(QString::number(c.capacity)));
-        ui->cabinetTableWidget->setItem(i, 3, new QTableWidgetItem(c.storedPackageIds));
     }
     ui->cabinetTableWidget->resizeColumnsToContents();
     selectedCabinetId = -1;

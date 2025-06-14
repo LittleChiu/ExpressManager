@@ -2,7 +2,7 @@
 
 bool PickupCabinetController::addCabinet(const QString& location, int capacity) {
     QSqlQuery query;
-    query.prepare("INSERT INTO PickupCabinet (location, capacity, storedPackageIds) VALUES (?, ?, '')");
+    query.prepare("INSERT INTO PickupCabinet (location, capacity) VALUES (?, ?)");
     query.addBindValue(location);
     query.addBindValue(capacity);
     return query.exec();
@@ -37,6 +37,5 @@ bool PickupCabinetController::createTable() {
     return query.exec("CREATE TABLE IF NOT EXISTS PickupCabinet ("
                       "cabinetId INTEGER PRIMARY KEY AUTOINCREMENT,"
                       "location TEXT,"
-                      "capacity INTEGER,"
-                      "storedPackageIds TEXT)");
+                      "capacity INTEGER)");
 }
