@@ -14,7 +14,7 @@ UserView::UserView(int userId, QWidget *parent)
     mainLayout->addWidget(tabWidget);
 
     // 用户名按钮
-    User user = UserController::instance().getUserById(userId);
+    User user = UserController::instance().getUserById(userId).value();
     QString roleStr = (user.role == UserRole::ADMIN) ? "管理员" : (user.role == UserRole::EXPRESSMAN ? "快递员" : "用户");
     userMenuButton = new QPushButton(user.username +"("+roleStr+ ") ▼", this);
     tabWidget->setCornerWidget(userMenuButton, Qt::TopRightCorner);

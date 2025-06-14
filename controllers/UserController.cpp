@@ -4,13 +4,12 @@
 #include <QCryptographicHash>
 #include <optional>
 
-namespace {
 QString encryptPassword(const QString& password) {
     return QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256).toHex());
 }
-}
 
 bool UserController::addUser(const QString& name, const QString& phone, const QString& password) {
+    if (!getUserByUserName(name).has_value() || !getUserByPhone(phone).has_value()) return false;
     QSqlQuery query;
     query.prepare("INSERT INTO User (username, phone, passwordEncrypted, role, expressCompanyIds) VALUES (?, ?, ?, ?, ?)");
     query.addBindValue(name);
@@ -29,6 +28,7 @@ bool UserController::deleteUser(int userId) {
 }
 
 bool UserController::modifyUser(int userId, const QString& newName, const QString& newPhone) {
+    if (!getUserByPhone(newPhone).has_value() || !getUserByUserName(newName).has_value()) return false;
     QSqlQuery query;
     query.prepare("UPDATE User SET username = ?, phone = ? WHERE id = ?");
     query.addBindValue(newName);
@@ -84,13 +84,49 @@ std::optional<User> UserController::loginByPhone(const QString& phone, const QSt
     return std::nullopt;
 }
 
-User UserController::getUserById(int userId) {
+std::optional<User> UserController::loginByUserName(const QString& name, const QString& password) {
+    QSqlQuery query;
+    query.prepare("SELECT * FROM User WHERE username = ?");
+    query.addBindValue(name);
+    if (!query.exec() || !query.next()) {
+        return std::nullopt;
+    }
+    QString encrypted = query.value("passwordEncrypted").toString();
+    if (encrypted == encryptPassword(password)) {
+        return User::fromQuery(query);
+    }
+    return std::nullopt;
+}
+
+std::optional<User> UserController::getUserById(int userId) {
     auto users = getAllUsers();
     for (const auto& u : users) {
         if (u.id == userId) return u;
     }
-    return User();
+    return std::nullopt;
 }
+std::optional<User> UserController::getUserByUserName(const QString& userName) {
+    QSqlQuery query;
+    query.prepare("SELECT * FROM User WHERE username = ?");
+    query.addBindValue(userName);
+
+    if (query.exec() && query.next()) {
+        return User::fromQuery(query);
+    }
+    return std::nullopt;
+}
+
+std::optional<User> UserController::getUserByPhone(const QString& phone) {
+    QSqlQuery query;
+    query.prepare("SELECT * FROM User WHERE phone = ?");
+    query.addBindValue(phone);
+
+    if (query.exec() && query.next()) {
+        return User::fromQuery(query);
+    }
+    return std::nullopt;
+}
+
 bool UserController::createTable() {
     QSqlQuery query;
     return query.exec("CREATE TABLE IF NOT EXISTS User ("

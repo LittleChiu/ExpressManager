@@ -20,7 +20,7 @@ UserProfileView::~UserProfileView() {
 
 void UserProfileView::setUserId(int id) {
     userId = id;
-    User user = UserController::instance().getUserById(userId);
+    User user = UserController::instance().getUserById(userId).value();
     ui->usernameLabel->setText(user.username);
     ui->phoneLabel->setText(user.phone);
 
@@ -34,7 +34,7 @@ void UserProfileView::onUpdatePhoneClicked() {
     if (userId == -1) return;
     QString newPhone = QInputDialog::getText(this, "修改手机号", "新手机号:");
     if (newPhone.isEmpty()) return;
-    auto user = UserController::instance().getUserById(userId);
+    auto user = UserController::instance().getUserById(userId).value();
     if (UserController::instance().modifyUser(userId, user.username, newPhone)) {
         QMessageBox::information(this, "成功", "手机号修改成功");
         ui->phoneLabel->setText(newPhone);
@@ -58,7 +58,7 @@ void UserProfileView::onUpdateUsernameClicked() {
     if (userId == -1) return;
     QString newName = QInputDialog::getText(this, "修改用户名", "新用户名:");
     if (newName.isEmpty()) return;
-    auto user = UserController::instance().getUserById(userId);
+    auto user = UserController::instance().getUserById(userId).value();
     if (UserController::instance().modifyUser(userId, newName, user.phone)) {
         QMessageBox::information(this, "成功", "用户名修改成功");
         ui->usernameLabel->setText(newName);
@@ -72,7 +72,7 @@ void UserProfileView::refreshCompanyLabel() {
         ui->companyLabel->setText("-");
         return;
     }
-    User user = UserController::instance().getUserById(userId);
+    User user = UserController::instance().getUserById(userId).value();
     if (user.role != UserRole::EXPRESSMAN) {
         ui->companyLabel->setText("-");
         return;

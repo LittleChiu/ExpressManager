@@ -51,7 +51,7 @@ void PackageView::refreshPackageTable() {
     // 判断当前用户是否为管理员
     bool isAdmin = false;
     if (currentUserId != -1) {
-        User user = UserController::instance().getUserById(currentUserId);
+        User user = UserController::instance().getUserById(currentUserId).value();
         isAdmin = (user.role == UserRole::ADMIN);
     }
     int rowIdx = 0;
@@ -75,11 +75,11 @@ void PackageView::refreshPackageTable() {
         ui->packageTableWidget->setItem(rowIdx, 7, new QTableWidgetItem(p.location));
         ui->packageTableWidget->setItem(rowIdx, 8, new QTableWidgetItem(QString::number(p.expressCompanyId)));
         // 收件人用户名(ID)
-        User recipient = UserController::instance().getUserById(p.recipientId);
+        User recipient = UserController::instance().getUserById(p.recipientId).value();
         QString recipientStr = recipient.username.isEmpty() ? "-" : QString("%1(%2)").arg(recipient.username).arg(recipient.id);
         ui->packageTableWidget->setItem(rowIdx, 9, new QTableWidgetItem(recipientStr));
         // 快递员用户名(ID)
-        User expressman = UserController::instance().getUserById(p.expressmanId);
+        User expressman = UserController::instance().getUserById(p.expressmanId).value();
         QString expressmanStr = expressman.username.isEmpty() ? "-" : QString("%1(%2)").arg(expressman.username).arg(expressman.id);
         ui->packageTableWidget->setItem(rowIdx, 10, new QTableWidgetItem(expressmanStr));
         rowIdx++;
@@ -106,7 +106,7 @@ void PackageView::onAddPackageClicked() {
     QStringList allowedIds;
     bool isExpressman = false;
     if (currentUserId != -1) {
-        User user = UserController::instance().getUserById(currentUserId);
+        User user = UserController::instance().getUserById(currentUserId).value();
         isExpressman = (user.role == UserRole::EXPRESSMAN);
         if (isExpressman) {
             allowedIds = user.expressCompanyIds.split(",", Qt::SkipEmptyParts);

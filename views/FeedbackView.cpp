@@ -12,7 +12,7 @@ FeedbackView::FeedbackView(int userId, QWidget *parent)
 {
     ui->setupUi(this);
     // 判断身份
-    User user = UserController::instance().getUserById(userId);
+    User user = UserController::instance().getUserById(userId).value();
     isRecipient = (user.role == UserRole::RECIPIENT);
     connect(ui->refreshFeedbackButton, &QPushButton::clicked, this, &FeedbackView::refreshFeedbackTable);
     connect(ui->submitFeedbackButton, &QPushButton::clicked, this, &FeedbackView::onSubmitFeedbackClicked);

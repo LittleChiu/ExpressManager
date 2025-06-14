@@ -32,7 +32,7 @@
        <item>
         <widget class="QLabel" name="labelPhoneLogin">
          <property name="text">
-          <string>手机号:</string>
+          <string>用户名/手机号:</string>
          </property>
         </widget>
        </item>

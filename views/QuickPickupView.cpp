@@ -31,9 +31,9 @@ void QuickPickupView::onPickupClicked() {
     for (const auto& pkg : pkgs) {
         if (pkg.pickupCode == code && pkg.status == PackageStatus::STORED) {
             // 弹出包裹信息，确认后才取件
-            User recipient = UserController::instance().getUserById(pkg.recipientId);
+            User recipient = UserController::instance().getUserById(pkg.recipientId).value();
             QString recipientStr = recipient.username.isEmpty() ? "-" : QString("%1(%2)").arg(recipient.username).arg(std::to_string(recipient.id));
-            User expressman = UserController::instance().getUserById(pkg.expressmanId);
+            User expressman = UserController::instance().getUserById(pkg.expressmanId).value();
             QString expressmanStr = expressman.username.isEmpty() ? "-" : QString("%1(%2)").arg(expressman.username)
             .arg(std::to_string(expressman.id));
             QString info = QString("包裹ID: %1\n体积: %2\n易碎: %3\n状态: %4\n入柜时间: %5\n公司ID: %6\n收件人: %7\n快递员: %8")

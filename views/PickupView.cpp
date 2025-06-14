@@ -46,7 +46,7 @@ void PickupView::refreshPickupTable() {
         ui->pickupTableWidget->setItem(rowIdx, 4, new QTableWidgetItem(storedTimeStr));
         ui->pickupTableWidget->setItem(rowIdx, 5, new QTableWidgetItem(p.location));
         ui->pickupTableWidget->setItem(rowIdx, 6, new QTableWidgetItem(QString::number(p.expressCompanyId)));
-        User expressman = UserController::instance().getUserById(p.expressmanId);
+        User expressman = UserController::instance().getUserById(p.expressmanId).value();
         QString expressmanStr = expressman.username.isEmpty() ? "-" : QString("%1(%2)").arg(expressman.username).arg(expressman.id);
         ui->pickupTableWidget->setItem(rowIdx, 7, new QTableWidgetItem(expressmanStr));
         rowIdx++;

@@ -30,7 +30,14 @@ void LoginView::onLoginClicked() {
     QString password = ui->passwordEditLogin->text();
     auto userOpt = UserController::instance().loginByPhone(phone, password);
     if (!userOpt.has_value()) {
-        QMessageBox::warning(this, "登录失败", "手机号或密码错误");
+        auto userOpt2 = UserController::instance().loginByUserName(phone, password);
+        if (userOpt2.has_value()) {
+            emit loginSuccess(userOpt2.value());
+            QMessageBox::information(this, "登录成功", "欢迎回来！");
+        }else {
+            QMessageBox::warning(this, "登录失败", "用户名手机号或密码错误");
+        }
+
     } else {
         emit loginSuccess(userOpt.value());
         QMessageBox::information(this, "登录成功", "欢迎回来！");
@@ -41,11 +48,15 @@ void LoginView::onRegisterClicked() {
     QString username = ui->usernameEditRegister->text();
     QString phone = ui->phoneEditRegister->text();
     QString password = ui->passwordEditRegister->text();
+    if (phone.length() != 11) {
+        QMessageBox::warning(this, "注册失败", "手机号不合法.");
+        return;
+    }
     bool ok = UserController::instance().addUser(username, phone, password);
     if (!ok) {
         QMessageBox::warning(this, "注册失败", "注册信息有误或用户已存在.");
     } else {
         QMessageBox::information(this, "注册成功", "注册成功! 请登录.");
-        ui->tabWidget->setCurrentIndex(0);
+        ui->tabWidget->setCurrentIndex(1);
     }
 }

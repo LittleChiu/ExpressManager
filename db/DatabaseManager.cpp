@@ -20,7 +20,6 @@ QSqlDatabase& DatabaseManager::getDatabase() {
 void DatabaseManager::initDatabase() {
     QSqlDatabase db = getDatabase();
 
-    // 检查驱动是否可用
     qDebug() << "可用驱动:" << QSqlDatabase::drivers();
 
     if (!db.isValid()) {
@@ -33,7 +32,6 @@ void DatabaseManager::initDatabase() {
         return;
     }
 
-    // 自动建表
     UserController::instance().createTable();
     ExpressCompanyController::instance().createTable();
     PickupCabinetController::instance().createTable();
