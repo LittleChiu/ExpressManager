@@ -13,7 +13,7 @@
 
 QSqlDatabase& DatabaseManager::getDatabase() {
     static QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("express_cabinet.db");
+    db.setDatabaseName("database.db");
     return db;
 }
 

@@ -118,7 +118,10 @@ void PackageView::onAddPackageClicked() {
         }
     }
     auto users = UserController::instance().getAllUsers();
-    for (const auto& u : users) recipientCombo.addItem(QString("%1(%2)").arg(u.username).arg(u.id), u.id);
+    for (const auto& u : users) {
+        if (u.role != UserRole::RECIPIENT) continue;
+        recipientCombo.addItem(QString("%1(%2)").arg(u.username).arg(u.id), u.id);
+    }
     form.addRow("体积:", &volumeSpin);
     form.addRow("易碎:", &fragileCombo);
     form.addRow("状态:", &statusCombo);

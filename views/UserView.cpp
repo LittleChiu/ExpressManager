@@ -7,7 +7,7 @@
 UserView::UserView(int userId, QWidget *parent)
     : QWidget(parent), userId(userId)
 {
-    this->resize(598, 354);
+    this->resize(800, 354);
     this->setWindowTitle("Express");
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     tabWidget = new QTabWidget(this);

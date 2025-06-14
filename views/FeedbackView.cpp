@@ -161,7 +161,7 @@ void FeedbackView::onViewPackageClicked() {
             break;
         }
     }
-    QString info = QString("包裹ID: %1\n体积: %2\n\n易碎: %4\n状态: %5\n位置: %6\n公司ID: %7\n收件人ID: %8\n快递员ID: %9")
+    QString info = QString("包裹ID: %1\n体积: %2\n易碎: %4\n状态: %5\n位置: %6\n公司ID: %7\n收件人ID: %8\n快递员ID: %9")
         .arg(std::to_string(pkg.packageId)).arg(std::to_string(pkg.volume)).arg(pkg.isFragile ? "是" : "否")
         .arg((pkg.status == PackageStatus::STORED) ? "已存入柜" : (pkg.status == PackageStatus::PICKUPED ? "已取件" : "异常"))
         .arg(pkg.location).arg(std::to_string(pkg.expressCompanyId)).arg(std::to_string(pkg.recipientId))
