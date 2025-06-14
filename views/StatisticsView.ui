@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>StatisticsView</class>
+    <widget class="QWidget" name="StatisticsView">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>350</width>
+                <height>320</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>收取件统计</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <layout class="QHBoxLayout" name="dateLayout">
+                    <item>
+                        <widget class="QLabel" name="labelStartDate">
+                            <property name="text">
+                                <string>开始日期</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QDateEdit" name="startDateEdit"/>
+                    </item>
+                    <item>
+                        <widget class="QLabel" name="labelEndDate">
+                            <property name="text">
+                                <string>结束日期</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QDateEdit" name="endDateEdit"/>
+                    </item>
+                </layout>
+            </item>
+            <item>
+                <layout class="QHBoxLayout" name="companyLayout">
+                    <item>
+                        <widget class="QLabel" name="labelCompany">
+                            <property name="text">
+                                <string>快递公司</string>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QComboBox" name="companyComboBox"/>
+                    </item>
+                </layout>
+            </item>
+            <item>
+                <widget class="QPushButton" name="searchButton">
+                    <property name="text">
+                        <string>查询统计</string>
+                    </property>
+                </widget>
+            </item>
+            <item>
+                <widget class="QPushButton" name="refreshButton">
+                    <property name="text">
+                        <string>刷新</string>
+                    </property>
+                </widget>
+            </item>
+            <item>
+                <widget class="QTableWidget" name="statisticsTableWidget"/>
+            </item>
+            <item>
+                <widget class="QLabel" name="totalAmountLabel">
+                    <property name="text">
+                        <string>应结算金额：</string>
+                    </property>
+                </widget>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>

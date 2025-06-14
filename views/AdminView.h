@@ -1,4 +1,6 @@
 #pragma once
+#include <ui_StatisticsView.h>
+
 #include "UserView.h"
 #include "PackageView.h"
 #include "PickupCabinetView.h"
@@ -7,6 +9,7 @@
 #include "UserProfileView.h"
 #include "PickupView.h"
 #include "FeedbackView.h"
+#include "StatisticsView.h"
 
 namespace Ui {
 class AdminView;
@@ -23,6 +26,8 @@ public:
         addTab(new PickupCabinetView(this), "快递柜管理");
         addTab(new PickupView(userId, this), "取件管理");
         addTab(new FeedbackView(userId, this), "反馈评价");
+        addTab(new StatisticsView( this), "数据分析");
+
         auto profile = new UserProfileView(this);
         profile->setUserId(userId);
         addTab(profile, "个人信息");
