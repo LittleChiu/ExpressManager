@@ -21,4 +21,5 @@ private:
     Ui::PackageView *ui;
     int selectedPackageId = -1;
     int currentUserId = -1;
+    static QString generatePickupCode();
 }; 

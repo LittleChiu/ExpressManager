@@ -4,6 +4,7 @@
 #include <QLineEdit>
 #include "UserController.h"
 #include <QMessageBox>
+#include "QuickPickupView.h"
 
 LoginView::LoginView(QWidget *parent) :
     QWidget(parent),
@@ -13,6 +14,11 @@ LoginView::LoginView(QWidget *parent) :
     connect(ui->loginButton, &QPushButton::clicked, this, &LoginView::onLoginClicked);
     connect(ui->registerButton, &QPushButton::clicked, this, &LoginView::onRegisterClicked);
 
+    // 在tabPickup中添加QuickPickupView
+    quickPickupView = new QuickPickupView(this);
+    QVBoxLayout* layout = new QVBoxLayout(ui->tabPickup);
+    layout->addWidget(quickPickupView);
+    ui->tabPickup->setLayout(layout);
 }
 
 LoginView::~LoginView() {

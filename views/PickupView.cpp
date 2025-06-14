@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QTableWidgetItem>
 #include <QPushButton>
+#include "UserController.h"
 
 PickupView::PickupView(int userId, QWidget *parent)
     : QWidget(parent), ui(new Ui::PickupView), currentUserId(userId)
@@ -27,7 +28,7 @@ PickupView::~PickupView() {
 }
 
 void PickupView::refreshPickupTable() {
-    QStringList headers = {"ID", "体积", "重量", "易碎", "状态", "位置", "公司ID", "快递员ID"};
+    QStringList headers = {"ID", "体积",  "易碎", "状态", "入柜时间", "位置", "公司ID", "快递员ID"};
     ui->pickupTableWidget->setColumnCount(headers.size());
     ui->pickupTableWidget->setHorizontalHeaderLabels(headers);
     ui->pickupTableWidget->setRowCount(0);
@@ -39,12 +40,15 @@ void PickupView::refreshPickupTable() {
         ui->pickupTableWidget->insertRow(rowIdx);
         ui->pickupTableWidget->setItem(rowIdx, 0, new QTableWidgetItem(QString::number(p.packageId)));
         ui->pickupTableWidget->setItem(rowIdx, 1, new QTableWidgetItem(QString::number(p.volume)));
-        ui->pickupTableWidget->setItem(rowIdx, 2, new QTableWidgetItem(QString::number(p.weight)));
-        ui->pickupTableWidget->setItem(rowIdx, 3, new QTableWidgetItem(p.isFragile ? "是" : "否"));
-        ui->pickupTableWidget->setItem(rowIdx, 4, new QTableWidgetItem("已存入柜"));
+        ui->pickupTableWidget->setItem(rowIdx, 2, new QTableWidgetItem(p.isFragile ? "是" : "否"));
+        ui->pickupTableWidget->setItem(rowIdx, 3, new QTableWidgetItem("已存入柜"));
+        QString storedTimeStr = QDateTime::fromSecsSinceEpoch(p.storedTime).toString("yyyy-MM-dd HH:mm:ss");
+        ui->pickupTableWidget->setItem(rowIdx, 4, new QTableWidgetItem(storedTimeStr));
         ui->pickupTableWidget->setItem(rowIdx, 5, new QTableWidgetItem(p.location));
         ui->pickupTableWidget->setItem(rowIdx, 6, new QTableWidgetItem(QString::number(p.expressCompanyId)));
-        ui->pickupTableWidget->setItem(rowIdx, 7, new QTableWidgetItem(QString::number(p.expressmanId)));
+        User expressman = UserController::instance().getUserById(p.expressmanId);
+        QString expressmanStr = expressman.username.isEmpty() ? "-" : QString("%1(%2)").arg(expressman.username).arg(expressman.id);
+        ui->pickupTableWidget->setItem(rowIdx, 7, new QTableWidgetItem(expressmanStr));
         rowIdx++;
     }
     ui->pickupTableWidget->resizeColumnsToContents();
@@ -60,8 +64,8 @@ void PickupView::onPickupClicked() {
         PackageController::instance().updatePickupTime(selectedPackageId,QDateTime::currentSecsSinceEpoch());
         Feedback fb;
         fb.packageId = selectedPackageId;
-        fb.rating = 0.0;
-        fb.comment = "";
+        fb.rating = -1;
+        fb.comment = "尚未评价";
         FeedbackController::instance().addFeedback(fb);
         QMessageBox::information(this, "成功", "取件成功, 记得评价!");
         refreshPickupTable();

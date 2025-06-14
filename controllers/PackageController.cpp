@@ -2,10 +2,9 @@
 
 bool PackageController::addPackage(const Package& pkg) {
     QSqlQuery query;
-    query.prepare("INSERT INTO Package (volume, weight, isFragile, status, location, storedTime, expressCompanyId, recipientId, expressmanId) "
+    query.prepare("INSERT INTO Package (volume, isFragile, status, location, storedTime, expressCompanyId, recipientId, expressmanId, pickupCode) "
                   "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     query.addBindValue(pkg.volume);
-    query.addBindValue(pkg.weight);
     query.addBindValue(pkg.isFragile ? 1 : 0);
     query.addBindValue(static_cast<int>(pkg.status));
     query.addBindValue(pkg.location);
@@ -13,6 +12,7 @@ bool PackageController::addPackage(const Package& pkg) {
     query.addBindValue(pkg.expressCompanyId);
     query.addBindValue(pkg.recipientId);
     query.addBindValue(pkg.expressmanId);
+    query.addBindValue(pkg.pickupCode);
     return query.exec();
 }
 
@@ -65,6 +65,7 @@ QList<Package> PackageController::queryByLocationAndStatus(const QString& locati
     }
     return list;
 }
+
 bool PackageController::createTable() {
     QSqlQuery query;
     return query.exec("CREATE TABLE IF NOT EXISTS Package ("
@@ -78,5 +79,7 @@ bool PackageController::createTable() {
                       "pickupTime INTEGER DEFAULT -1,"
                       "expressCompanyId INTEGER,"
                       "recipientId INTEGER,"
-                      "expressmanId INTEGER)");
+                      "expressmanId INTEGER,"
+                      "pickupCode TEXT"
+                      ")");
 }

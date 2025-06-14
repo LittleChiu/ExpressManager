@@ -1,6 +1,7 @@
 #pragma once
 #include <QWidget>
 #include "User.h"
+#include "QuickPickupView.h"
 
 namespace Ui {
 class LoginView;
@@ -21,4 +22,5 @@ private slots:
 
 private:
     Ui::LoginView *ui;
+    QuickPickupView* quickPickupView = nullptr;
 }; 
